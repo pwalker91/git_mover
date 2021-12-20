@@ -29,6 +29,13 @@ For more details on this script's options and how to use them, please review [th
 
 When the script sends an HTTP Request to any host _other than `https://api.github.com`_, the server's SSL Certification **will not be verified**.
 
+## Remaining ToDo
+- [ ] Logic for migration of labels
+- [ ] Logic for migration of milestones
+- [ ] Logic for migration of issues
+- [ ] Logic for migration of PRs
+
+
 ----
 
 _This project was based on the [original implementation](https://github.com/ahadik/git_mover) by `ahadik`. It also draws from [improvements](https://github.com/freshbooks/git_mover) made by `freshbooks`._
