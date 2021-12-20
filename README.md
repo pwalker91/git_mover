@@ -1,46 +1,34 @@
-# GitMover
-A Python script to migrate milestones, labels, and issues between repositories.
+# Git Mover
 
-There was once no easy way to migrate your team's collaborative work (Milestones, Labels, Issues) to another repository. This was especially thorny for teams moving a project into GitHub Enterprise, or open sourcing an existing project by moving it out of GitHub Enterprise. This is a tool to help that process.
+A Python script to clone a repository (all commits/code/tags/branches/etc.) and migrate the repository to a new location.
 
-## Dependencies
-GitMover is just a Python script. You'll need `requests`, and `argparse` installed.
-Install them with pip: `pip install requests argparse`.
+### Python Version
+
+This script was written for **Python 3.9**.
+
+### Dependencies
+
+This project contains a Python script that can be run from the command line. Before running the script, be sure to install any required libraries by running the following command:
+```bash
+$ pip3 install -r requirements.txt
+```
+> NOTE!<br>
+> You might consider using `virtualenv` and `virtualenvwrapper` to keep this project's Python version isolated from your system's Python. [Consider following this guide](https://virtualenvwrapper.readthedocs.io/en/latest/).
+
+You will also need to install `git` Command Line Tool so that the Python script can use it to clone the specified repositories.<br>Refer to the [git-scm.com downloads page](https://git-scm.com/downloads) for information on how to install `git` on your machine.
 
 ## Usage
+
+Using your preferred command line tool, navigate to your clone of this repository and run the following command:
 ```bash
-$ git-mover.py [-h] [--destinationToken [DESTINATIONTOKEN]]
-                    [--destinationUserName [DESTINATIONUSERNAME]]
-                    [--sourceRoot [SOURCEROOT]]
-                    [--destinationRoot [DESTINATIONROOT]] [--milestones]
-                    [--labels] [--issues]
-                    user_name token source_repo destination_repo
+$ python3 git-mover.py [OPTIONS] source_repo destination_repo
 ```
+For more details on this script's options and how to use them, please review [the Usage Readme](README_USAGE.md).
 
-For authentication, GitMover uses a personal access token, which can be generated in your GitHub Profile settings.
+### Warning! SSL Cert Verification
 
-### Positional Arguments
-  `user_name`: Your GitHub (public or enterprise) username: name@email.com
-  
-  `token`: Your GitHub (public or enterprise) personal access token
-  
-  `source_repo`: the team and repo to migrate from: `<team_name>/<repo_name>`
-  
-  `destination_repo`: the team and repo to migrate to: `<team_name>/<repo_name>`
-  
-### Optional Arguments
-  `-h, --help`: show this help message and exit
-  
-  `--sourceRoot [SOURCEROOT], -sr [SOURCEROOT]`: The GitHub domain to migrate from. Defaults to https://www.github.com. For GitHub enterprise customers, enter the domain for your GitHub installation.
-  
-  `--destinationRoot [DESTINATIONROOT], -dr [DESTINATIONROOT]`: The GitHub domain to migrate to. Defaults to https://www.github.com. For GitHub enterprise customers, enter the domain for your GitHub installation.
-  
-  `--destinationToken [DESTINATIONTOKEN], -dt [DESTINATIONTOKEN]`: Your personal access token for the destination account, if you are migrating between different GitHub installations.
-  
-  `--destinationUserName [DESTINATIONUSERNAME], -dun [DESTINATIONUSERNAME]`: Username (email address) for destination account, if you are migrating between different GitHub installations.
-  
-  `--milestones, -m`: Toggle on Milestone migration.
-  
-  `--labels, -l`: Toggle on Label migration.
-  
-  `--issues, -i`: Toggle on Issue migration.
+When the script sends an HTTP Request to any host _other than `https://api.github.com`_, the server's SSL Certification **will not be verified**.
+
+----
+
+_This project was based on the [original implementation](https://github.com/ahadik/git_mover) by `ahadik`. It also draws from [improvements](https://github.com/freshbooks/git_mover) made by `freshbooks`._

@@ -1,0 +1,7 @@
+
+# Python cache files
+movers/__pycache__/*.pyc
+
+# Developer's individual reference docs/notes
+my_notes/*
+!my_notes/.empty
